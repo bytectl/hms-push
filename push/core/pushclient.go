@@ -121,8 +121,7 @@ func (c *HttpPushClient) sendHttpRequest(ctx context.Context, request *httpclien
 	}
 
 	if err = json.Unmarshal(resp.Body, responsePointer); err != nil {
-		fmt.Printf("err resp.Body: %v\n", string(resp.Body))
-		return err
+		return fmt.Errorf("unmarshal response body failed,body:%v\nerr: %v", string(resp.Body), err)
 	}
 	return nil
 }
